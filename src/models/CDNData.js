@@ -20,6 +20,6 @@ const cdnSchema = new mongoose.Schema({
     type: Object,
   },
 });
-const CdnData = mongoose.model('data', cdnSchema)
+const CdnData = mongoose.model("data", cdnSchema);
 
-module.exports = CdnData
+module.exports = CdnData;
