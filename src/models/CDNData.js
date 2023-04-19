@@ -6,19 +6,30 @@ const cdnSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  createdAt: {
+  mobile_phone: {
     required: true,
     type: Number,
     trim: true,
   },
-  cart: {
+  full_name: {
     required: true,
-    type: Object,
+    type: String,
+    trim: true,
   },
-  address: {
+  products: {
     required: true,
-    type: Object,
+    type: Array,
   },
+  client_created_at:{
+    required: true,
+    type: Number,
+    trim: true
+  },
+  cart_created_at:{
+    required: true,
+    type:Date,
+    trim: true
+  }
 });
 const CdnData = mongoose.model("data", cdnSchema);
 
