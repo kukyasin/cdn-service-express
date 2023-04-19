@@ -4,13 +4,12 @@ const checkElement = setInterval(async function () {
     clearInterval(checkElement);
 
     data_to_post = {};
-    data_to_post.sender_store = window.location.hostname;
+    var hostname = window.location.hostname;
+    data_to_post.sender_store = hostname;
     data_to_post.client_created_at = Date.now();
 
-    urlAddress =
-      "https://pamajans.ticimaxtest.com/api/member/GetMemberAddress?ExcludeStoreRegion=true";
-    urlCart =
-      "https://pamajans.ticimaxtest.com/api/cart/GetMemberCart?c=trtry0000&ProductType=0";
+    urlAddress = `https://${hostname}/api/member/GetMemberAddress?ExcludeStoreRegion=true`;
+    urlCart = `https://${hostname}/api/cart/GetMemberCart?c=trtry0000&ProductType=0`;
 
     await fetch(urlCart)
       .then((response) => response.json())
