@@ -4,14 +4,29 @@ const router = new express.Router();
 require("dotenv").config();
 
 router.post("/cdn", async (req, res) => {
+  const {
+    client_created_at,
+    mobile_phone,
+    sender_store,
+    cart_created_at,
+    products,
+    full_name,
+  } = req.body;
+  const humanReadable = new Date(client_created_at).toISOString().slice(0, 19);
+
   const data = new CdnData({
-    ...req.body,
+    sender_store,
+    full_name,
+    mobile_phone,
+    products,
+    cart_created_at,
+    client_created_at: humanReadable,
   });
   try {
     await data.save();
-    res.status(201).send({ success: "Pushouse Consumed the Data"});
+    res.status(201).send({ success: "Pushouse Consumed the Data" });
   } catch (e) {
-    console.log(e)
+    console.log(e);
     res.status(400).send({ error: "Bad Request" });
   }
 });
@@ -23,16 +38,13 @@ router.get("/cdn", async (req, res) => {
   const store_name = req.query.store_name;
 
   if (token === SECRET_TOKEN) {
-    const data = await CdnData.find({ sender_store: store_name}).exec();
-    console.log(data)
+    const data = await CdnData.find({ sender_store: store_name }).exec();
     try {
       res.status(200).send(data);
     } catch (e) {
-      console.log(e)
       return res.status(400).send({ error: "Bad Request" });
     }
   } else {
-    console.log(e)
     return res.status(401).send({ error: "Unauthorized" });
   }
 });

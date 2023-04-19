@@ -15,16 +15,14 @@ const checkElement = setInterval(async function () {
     await fetch(urlCart)
       .then((response) => response.json())
       .then((data) => {
-    let productList = []
+        let productList = [];
         data.cart.products.forEach((product) =>
-            productList.push(product.productName)
+          productList.push(product.productName)
         );
         data_to_post.cart_created_at = data.cart.cartDate;
-        data_to_post.products = productList
+        data_to_post.products = productList;
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch((error) => {});
 
     await fetch(urlAddress)
       .then((response) => response.json())
@@ -35,7 +33,6 @@ const checkElement = setInterval(async function () {
       .catch((error) => {
         console.error(error);
       });
-    console.log(data_to_post);
 
     fetch("https://cdn-microservice-pushouse.fcanmekikoglu.repl.co/cdn", {
       method: "POST",

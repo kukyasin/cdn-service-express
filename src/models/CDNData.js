@@ -22,12 +22,12 @@ const cdnSchema = new mongoose.Schema({
   },
   client_created_at:{
     required: true,
-    type: Number,
+    type: String,
     trim: true
   },
   cart_created_at:{
     required: true,
-    type:Date,
+    type:String,
     trim: true
   }
 });
