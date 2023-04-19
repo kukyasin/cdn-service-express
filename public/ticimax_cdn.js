@@ -34,7 +34,7 @@ const checkElement = setInterval(async function () {
         console.error(error);
       });
 
-    fetch("https://cdn-microservice-pushouse.fcanmekikoglu.repl.co/cdn", {
+    fetch("https://cdn-service-express.fcanmekikoglu.repl.co/cdn", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

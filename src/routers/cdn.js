@@ -12,7 +12,10 @@ router.post("/cdn", async (req, res) => {
     products,
     full_name,
   } = req.body;
-  const humanReadable = new Date(client_created_at).toISOString().slice(0, 19);
+  const dateObj = new Date(client_created_at);
+  dateObj.setHours(dateObj.getHours() + 3);
+  const adjustedTimestamp = dateObj.getTime();
+  const humanReadable = new Date(adjustedTimestamp).toISOString().slice(0, 19);
 
   const data = new CdnData({
     sender_store,
